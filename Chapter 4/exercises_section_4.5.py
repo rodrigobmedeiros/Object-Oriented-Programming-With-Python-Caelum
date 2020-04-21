@@ -43,6 +43,7 @@ def exercise_2():
 
         print(item)
 
+
 def exercise_3():
 
     grades = list(map(float, input('Enter 4 grades separated with spaces: ').split()))
@@ -53,19 +54,56 @@ def exercise_3():
 
     print('The mean between grades is {}'.format(round(mean, 2)))
 
+
 def exercise_4():
 
-    user_info = {}
+    user_info = dict()
 
-    user_info['name'], user_info['age'], user_info['city'] = input('Enter your name, city and age separated with'
+    user_info['name'], user_info['city'], user_info['age'] = input('Enter your name, city and age separated with'
                                                                    'spaces: ').split()
 
     for key, value in user_info.items():
 
-        print('{}: {}'.format(key,value))
+        print('{}: {}'.format(key, value))
 
-def
 
-exercise_4()
+def exercise_5():
 
+    user_list = list()
+
+    name, city, age = input('Enter your name, city and age separated with'
+                                                                   'spaces: ').split()
+
+    user_list.append({'name': name, 'city': city, 'age': age})
+
+    include_others = input('Do you want to include another user? y/n --> ')
+
+    while include_others == 'y':
+
+        name, city, age = input('Enter your name, city and age separated with'
+                                'spaces: ').split()
+
+        user_list.append({'name': name, 'city': city, 'age': age})
+
+        include_others = input('Do you want to include another user? y/n --> ')
+
+    for user in user_list:
+
+        print("Name: {}".format(user['name']))
+        print("City: {}".format(user['city']))
+        print("Age: {}".format(user['age']))
+        print('\n')
+
+
+def main():
+    exercise_1()
+    exercise_2()
+    exercise_3()
+    exercise_4()
+    exercise_5()
+
+
+if __name__ == '__main__':
+
+    main()
 
