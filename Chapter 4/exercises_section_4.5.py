@@ -45,10 +45,27 @@ def exercise_2():
 
 def exercise_3():
 
-    
+    grades = list(map(float, input('Enter 4 grades separated with spaces: ').split()))
 
+    print(grades)
 
+    mean = sum(grades)/len(grades)
 
-exercise_2()
+    print('The mean between grades is {}'.format(round(mean, 2)))
+
+def exercise_4():
+
+    user_info = {}
+
+    user_info['name'], user_info['age'], user_info['city'] = input('Enter your name, city and age separated with'
+                                                                   'spaces: ').split()
+
+    for key, value in user_info.items():
+
+        print('{}: {}'.format(key,value))
+
+def
+
+exercise_4()
 
 
