@@ -12,17 +12,29 @@ def main():
     # Define a secret number
     secret_number = 42
 
-    # Ask user for a integer number and convert from string to int
-    print('\n')
+    # Ask user in which difficulty level he wants to play
+    level = int(input('Choose the difficulty level: 1 (easy) 2 (Intermediate) 3 (hard)\n'
+                      '>> '))
+
+    # Dictionary to define the level string and the number of tries of each level
+    levels = {1: ['easy', 10], 2: ['intermediate', 3], 3: ['hard', 1]}
+    islevel = level in levels.keys()
+
+    while not islevel:
+        level = int(input('Choose the difficulty level: 1 (easy) 2 (Intermediate) 3 (hard)\n'
+                          '>> '))
+        islevel = level in levels
+
+    print('Level: {}'.format(levels[level][0]))
 
     # Define the number of tries and a round to start
-    number_of_tries = 3
+    number_of_tries = levels[level][1]
     n_round = 1
 
     while n_round <= number_of_tries:
 
         print('round {} of {}'.format(n_round, number_of_tries))
-
+        # Ask user for a integer number and convert from string to int
         guess = int(input('Enter a integer number: '))
 
         # Define bool variables to compare user guess with the secret number
