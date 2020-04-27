@@ -37,6 +37,111 @@ def print_loser_message():
     print('You lose!')
 
 
+def print_hangman(errors):
+
+    if errors == 1:
+
+        print("---------------------")
+        print("|            |       ")
+        print("|           ---      ")
+        print("|          |   |     ")
+        print("|           ---      ")
+        print("|                    ")
+        print("|                    ")
+        print("|                    ")
+        print("|                    ")
+        print("|                    ")
+        print("|                    ")
+        print("-----                ")
+        print("     |               ")
+        print("     ----------------")
+
+    elif errors == 2:
+
+        print("---------------------")
+        print("|            |       ")
+        print("|           ---      ")
+        print("|          |   |     ")
+        print("|           ---      ")
+        print("|            |       ")
+        print("|            |       ")
+        print("|            |       ")
+        print("|            |       ")
+        print("|                    ")
+        print("|                    ")
+        print("-----                ")
+        print("     |               ")
+        print("     ----------------")
+
+    elif errors == 3:
+
+        print("---------------------")
+        print("|            |       ")
+        print("|           ---      ")
+        print("|          |   |     ")
+        print("|           ---      ")
+        print("|            | /     ")
+        print("|            |/      ")
+        print("|            |       ")
+        print("|            |       ")
+        print("|                    ")
+        print("|                    ")
+        print("-----                ")
+        print("     |               ")
+        print("     ----------------")
+
+    elif errors == 4:
+
+        print("---------------------")
+        print("|            |       ")
+        print("|           ---      ")
+        print("|          |   |     ")
+        print("|           ---      ")
+        print("|          \ | /     ")
+        print("|           \|/      ")
+        print("|            |       ")
+        print("|            |       ")
+        print("|                    ")
+        print("|                    ")
+        print("-----                ")
+        print("     |               ")
+        print("     ----------------")
+
+    elif errors == 5:
+
+        print("---------------------")
+        print("|            |       ")
+        print("|           ---      ")
+        print("|          |   |     ")
+        print("|           ---      ")
+        print("|          \ | /     ")
+        print("|           \|/      ")
+        print("|            |       ")
+        print("|            |       ")
+        print("|           /        ")
+        print("|          /         ")
+        print("-----                ")
+        print("     |               ")
+        print("     ----------------")
+
+    elif errors == 6:
+
+        print("---------------------")
+        print("|            |       ")
+        print("|           ---      ")
+        print("|          |   |     ")
+        print("|           ---      ")
+        print("|          \ | /     ")
+        print("|           \|/      ")
+        print("|            |       ")
+        print("|            |       ")
+        print("|           / \      ")
+        print("|          /   \     ")
+        print("-----                ")
+        print("     |               ")
+        print("     ----------------")
+
+
 def update_word_with_guess(letter, secret_word, empty_word):
 
     index = 0
@@ -85,6 +190,7 @@ def main():
             count_errors += 1
             print('There is no {} in the secret word'.format(letter))
             print('You have: {} chances'.format(max_errors - count_errors))
+            print_hangman(count_errors)
 
         find_word = '_' not in empty_word
         hanged = count_errors == max_errors
