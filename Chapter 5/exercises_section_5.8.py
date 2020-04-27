@@ -1,7 +1,7 @@
 # Exercises - Section 5.8
 # Solution of the exercises.
 # Developed by: Rodrigo bernardo
-# Date: 21/04/2020
+# Date: 27/04/2020
 
 
 def test_args_kwargs_1(arg1, arg2, arg3):

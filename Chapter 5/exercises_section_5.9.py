@@ -1,7 +1,7 @@
 # Exercises - Section 5.9
 # Solution of the exercises.
 # Developed by: Rodrigo bernardo
-# Date: 21/04/2020
+# Date: 27/04/2020
 
 
 def hangman_game():
