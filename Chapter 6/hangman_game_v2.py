@@ -9,18 +9,55 @@
 import random as rd
 
 
-def main():
+def print_start_game():
 
     print('**************************************')
     print('*           Hangman Game             *')
     print('**************************************')
 
-    # Word to find
-    secret_word = 'banana'
+
+def define_secret_word():
+
     word_file = open('words.txt', 'r')
     lines = word_file.readlines()
+    word_file.close()
 
     secret_word = lines[rd.randint(0, len(lines) - 1)].rstrip('\n')
+
+    return secret_word
+
+
+def print_win_message():
+
+    print('You win!')
+
+
+def print_loser_message():
+
+    print('You lose!')
+
+
+def update_word_with_guess(letter, secret_word, empty_word):
+
+    index = 0
+    print('Nice! We found {} in the secret word'.format(letter))
+
+    # Replace _ for the letter at right position
+    for char in secret_word:
+
+        if letter == char:
+            empty_word[index] = char
+
+        index += 1
+    # Print the status of the word
+    print(empty_word)
+
+
+def main():
+
+    print_start_game()
+
+    secret_word = define_secret_word()
 
     empty_word = list(map(lambda x: x.replace(x, "_"), secret_word))
 
@@ -30,6 +67,7 @@ def main():
     count_errors = 0
     max_errors = 6
 
+    print('Word to find: ')
     print(empty_word)
 
     # Loop to ask user for a letter
@@ -40,19 +78,7 @@ def main():
 
         if letter in secret_word:
 
-            index = 0
-            print('Nice! We found {} in the secret word'.format(letter))
-
-            # Replace _ for the letter at right position
-            for char in secret_word:
-
-                if letter == char:
-
-                    empty_word[index] = char
-
-                index += 1
-            # Print the status of the word
-            print(empty_word)
+            update_word_with_guess(letter, secret_word, empty_word)
 
         else:
 
@@ -60,15 +86,16 @@ def main():
             print('There is no {} in the secret word'.format(letter))
             print('You have: {} chances'.format(max_errors - count_errors))
 
-        if not ('_' in empty_word):
-            # Finish the game with win.
-            find_word = True
-            print('You win!')
+        find_word = '_' not in empty_word
+        hanged = count_errors == max_errors
 
-        if count_errors == max_errors:
+        if find_word:
+            # Finish the game with win.
+            print_win_message()
+
+        if hanged:
             # Finish the game with lose.
-            hanged = True
-            print('You lose!')
+            print_loser_message()
 
     print('End Game')
 
