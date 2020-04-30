@@ -103,3 +103,8 @@ class Account(object):
 
         return cls._total_accounts
 
+    @staticmethod
+    def teste(x, y):
+
+        return x + y
+
