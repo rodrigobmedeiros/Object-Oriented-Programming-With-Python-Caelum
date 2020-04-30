@@ -43,68 +43,63 @@ class Account(object):
     def __init__(self, number, owner, balance, limit):
 
         print('Creating an account...')
-        self.creation_date = CreationDate()
-        self.number = number
-        self.owner = owner
-        self._balance = balance
-        self.limit = limit
-        self.log = Log()
+        self.__creation_date = CreationDate()
+        self.__number = number
+        self.__owner = owner
+        self.__balance = balance
+        self.__limit = limit
+        self.__log = Log()
         Account._total_accounts += 1
-        print('Creation Date: {}'.format(self.creation_date.today))
+        print('Creation Date: {}'.format(self.__creation_date.today))
         print('Account created...')
 
-    def withdraw(self, value):
+    def __withdraw(self, value):
 
-        self._balance -= value
-        self.log.log('withdraw: R${}'.format(value))
+        self.__balance -= value
+        self.__log.log('withdraw: R${}'.format(value))
 
-    def deposit(self, value):
+    def __deposit(self, value):
 
-        self._balance += value
-        self.log.log('deposit: R${}'.format(value))
+        self.__balance += value
+        self.__log.log('deposit: R${}'.format(value))
 
-    def statement(self):
+    def __statement(self):
 
-        print('Account Owner: {}'.format(self.owner.name))
-        print('Account: {} Balance: {}'.format(self.number, self._balance))
-        self.log.log('print statement')
+        print('Account Owner: {}'.format(self.__owner.name))
+        print('Account: {} Balance: {}'.format(self.__number, self.__balance))
+        self.__log.log('print statement')
 
-    def transfer_to(self, account_to_transfer, value):
+    def __transfer_to(self, account_to_transfer, value):
 
-        self._balance -= value
+        self.__balance -= value
         account_to_transfer.deposit(value)
         print('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
-        print('Account: {} Balance: {}'.format(self.number, self._balance))
-        self.log.log('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
+        print('Account: {} Balance: {}'.format(self.__number, self.__balance))
+        self.__log.log('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
 
     def print_log(self):
 
-        for log in self.log.log_operation:
+        for log in self.__log.log_operation:
 
             print(log)
 
     @property
-    def balance(self):
+    def __balance(self):
 
-        return self._balance
+        return self.__balance
 
-    @balance.setter
-    def balance(self, value):
+    @__balance.setter
+    def __balance(self, value):
 
-        if self._balance < 0:
+        if self.__balance < 0:
 
             print('Balance can not be negative')
 
         else:
-            self._balance = value
+            self.__balance = value
 
     @classmethod
-    def get_total_accounts(cls):
+    def __get_total_accounts(cls):
 
-        return cls._total_accounts
-
-    @staticmethod
-    def teste(x, y):
-
-        return x + y
+        return cls.__total_accounts
 
