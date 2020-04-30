@@ -7,7 +7,5 @@ account_1 = bank.Account('123-4', client_1, 250.0, 1500.0)
 account_2 = bank.Account('124-0', client_2, 500.0, 2500.0)
 
 
-account_1.balance = 10500
-print(bank.Account.get_total_accounts())
 
 

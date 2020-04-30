@@ -98,8 +98,8 @@ class Account(object):
         else:
             self._balance = value
 
-    @staticmethod
-    def get_total_accounts():
+    @classmethod
+    def get_total_accounts(cls):
 
-        return Account._total_accounts
+        return cls._total_accounts
 
