@@ -42,42 +42,52 @@ class Account(object):
     def __init__(self, number, owner, balance, limit):
 
         print('Creating an account...')
-        self.__creation_date = CreationDate()
-        self.__number = number
-        self.__owner = owner
-        self.__balance = balance
-        self.__limit = limit
-        self.__log = Log()
-        print('Creation Date: {}'.format(self.__creation_date.today))
+        self._creation_date = CreationDate()
+        self._number = number
+        self._owner = owner
+        self._balance = balance
+        self._limit = limit
+        self._log = Log()
+        print('Creation Date: {}'.format(self._creation_date.today))
         print('Account created...')
 
-    def __withdraw(self, value):
+    @property
+    def number(self):
 
-        self.__balance -= value
-        self.__log.log('withdraw: R${}'.format(value))
+        return self._number
 
-    def __deposit(self, value):
+    @number.setter
+    def number(self, number):
 
-        self.__balance += value
-        self.__log.log('deposit: R${}'.format(value))
+        self._number = number
 
-    def __statement(self):
+    def withdraw(self, value):
 
-        print('Account Owner: {}'.format(self.__owner.name))
-        print('Account: {} Balance: {}'.format(self.__number, self.__balance))
-        self.__log.log('print statement')
+        self._balance -= value
+        self._log.log('withdraw: R${}'.format(value))
 
-    def __transfer_to(self, account_to_transfer, value):
+    def deposit(self, value):
 
-        self.__balance -= value
+        self._balance += value
+        self._log.log('deposit: R${}'.format(value))
+
+    def statement(self):
+
+        print('Account Owner: {}'.format(self._owner.name))
+        print('Account: {} Balance: {}'.format(self._number, self._balance))
+        self._log.log('print statement')
+
+    def transfer_to(self, account_to_transfer, value):
+
+        self._balance -= value
         account_to_transfer.deposit(value)
         print('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
-        print('Account: {} Balance: {}'.format(self.__number, self.__balance))
-        self.__log.log('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
+        print('Account: {} Balance: {}'.format(self._number, self._balance))
+        self._log.log('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
 
     def print_log(self):
 
-        for log in self.__log.log_operation:
+        for log in self._log.log_operation:
 
             print(log)
 
