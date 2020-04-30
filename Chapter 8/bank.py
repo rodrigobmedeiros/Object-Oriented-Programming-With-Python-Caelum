@@ -36,7 +36,6 @@ class Client(object):
 
 class Account(object):
 
-    _total_accounts = 0
     """
     Class to define account's properties
     """
@@ -49,7 +48,6 @@ class Account(object):
         self.__balance = balance
         self.__limit = limit
         self.__log = Log()
-        Account._total_accounts += 1
         print('Creation Date: {}'.format(self.__creation_date.today))
         print('Account created...')
 
@@ -82,24 +80,4 @@ class Account(object):
         for log in self.__log.log_operation:
 
             print(log)
-
-    @property
-    def __balance(self):
-
-        return self.__balance
-
-    @__balance.setter
-    def __balance(self, value):
-
-        if self.__balance < 0:
-
-            print('Balance can not be negative')
-
-        else:
-            self.__balance = value
-
-    @classmethod
-    def __get_total_accounts(cls):
-
-        return cls.__total_accounts
 
