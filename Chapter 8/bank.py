@@ -39,6 +39,9 @@ class Account(object):
     """
     Class to define account's properties
     """
+
+    __slots__ = ['_creation_date', '_number', '_owner', '_balance', '_limit', '_log']
+
     def __init__(self, number, owner, balance, limit):
 
         print('Creating an account...')
