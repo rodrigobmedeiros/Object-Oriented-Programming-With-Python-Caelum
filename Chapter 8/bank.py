@@ -36,6 +36,7 @@ class Client(object):
 
 class Account(object):
 
+    _total_accounts = 0
     """
     Class to define account's properties
     """
@@ -45,34 +46,35 @@ class Account(object):
         self.creation_date = CreationDate()
         self.number = number
         self.owner = owner
-        self.balance = balance
+        self._balance = balance
         self.limit = limit
         self.log = Log()
+        Account._total_accounts += 1
         print('Creation Date: {}'.format(self.creation_date.today))
         print('Account created...')
 
     def withdraw(self, value):
 
-        self.balance -= value
+        self._balance -= value
         self.log.log('withdraw: R${}'.format(value))
 
     def deposit(self, value):
 
-        self.balance += value
+        self._balance += value
         self.log.log('deposit: R${}'.format(value))
 
     def statement(self):
 
         print('Account Owner: {}'.format(self.owner.name))
-        print('Account: {} Balance: {}'.format(self.number, self.balance))
+        print('Account: {} Balance: {}'.format(self.number, self._balance))
         self.log.log('print statement')
 
     def transfer_to(self, account_to_transfer, value):
 
-        self.balance -= value
+        self._balance -= value
         account_to_transfer.deposit(value)
         print('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
-        print('Account: {} Balance: {}'.format(self.number, self.balance))
+        print('Account: {} Balance: {}'.format(self.number, self._balance))
         self.log.log('value: {} Transfer to: {}'.format(value, account_to_transfer.number))
 
     def print_log(self):
@@ -80,4 +82,24 @@ class Account(object):
         for log in self.log.log_operation:
 
             print(log)
+
+    @property
+    def balance(self):
+
+        return self._balance
+
+    @balance.setter
+    def balance(self, value):
+
+        if self._balance < 0:
+
+            print('Balance can not be negative')
+
+        else:
+            self._balance = value
+
+    @staticmethod
+    def get_total_accounts():
+
+        return Account._total_accounts
 
