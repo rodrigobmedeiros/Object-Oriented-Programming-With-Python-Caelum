@@ -39,8 +39,12 @@ class Account(object):
     """
     Class to define account's properties
     """
+    # Slot create a list of attributes for the objects, avoid that an user creates a new attribute dinamically.
 
-    __slots__ = ['_creation_date', '_number', '_owner', '_balance', '_limit', '_log']
+    __slots__ = ['_creation_date', '_number', '_owner', '_balance', '_limit', '_log', 'id']
+
+    # Count the number os instances created. In order to be a global counter, this attribute is defined at class level
+    instance_count = 0
 
     def __init__(self, number, owner, balance, limit):
 
@@ -51,6 +55,12 @@ class Account(object):
         self._balance = balance
         self._limit = limit
         self._log = Log()
+
+        # Each object created increment the instance count
+        Account.instance_count += 1
+
+        # In this step we define the unique id of each instance
+        self.id = Account.instance_count
         print('Creation Date: {}'.format(self._creation_date.today))
         print('Account created...')
 
